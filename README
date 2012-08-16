@@ -1,0 +1,4 @@
+This is a small collection of tools to handle TMT data with OpenMS
+
+The directory code contains a collection of small programs.
+To build TMTTools you need OpenMS (http://www.openms.de, HEAD) and cmake (min 2.8).
