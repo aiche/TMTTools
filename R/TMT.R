@@ -6,3 +6,7 @@ ib_pep <- new("TMT6plexSpectra", pep_iso)
 
 library(ggplot2)
 maplot(ib_pep,channel1="126",channel2="129",ylim=c(0.5,2),main="Ratio 126:129")
+
+
+
+pep_iso = data.frame(accession = tmtDifferentialRaw$prot.accession, peptide= tmtDifferentialRaw$prot.name, spectrum=1:length(tmtDifferentialRaw[,1]), search.engine="?", X126_mass=126.12, X127_mass=127.12, X128_mass=128.13, X129_mass=129.13, X130_mass=130.14, X131_mass=131.13, X126_ions=tmtDifferentialRaw$i126, X127_ions=tmtDifferentialRaw$i127, X128_ions=tmtDifferentialRaw$i128, X129_ions=tmtDifferentialRaw$i129, X130_ions=tmtDifferentialRaw$i130, X131_ions=tmtDifferentialRaw$i131)
