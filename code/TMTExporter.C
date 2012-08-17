@@ -20,7 +20,7 @@ class TMTExporter :
 {
 public:
   TMTExporter() :
-    TOPPBase("TMTExporter", "Exports ConsensusXML created by TMT pipeline to tsv.", false, true)
+    TOPPBase("TMTExporter", "Exports ConsensusXML created by TMT/Itraq pipeline to tsv.", false, true)
   {
   }
 
@@ -33,6 +33,11 @@ protected:
     registerOutputFile_("out", "<output-file>", "", "The output file.",true);
     setValidFormats_("out", StringList::create("tsv"));
     
+    registerStringOption_("quant-type", "<ms2-type>", "TMT", "Type of MS2 quantification technique.",false);
+    setValidStrings_("quant-type", StringList::create("TMT,ITRAQ4PLEX,ITRAQ8PLEX"));
+    
+    registerFlag_("no-prot", "Do not check for protein identifications.");
+    
     addEmptyLine_();
   }
 
@@ -41,10 +46,30 @@ protected:
     Param tmp;
     return tmp;
   }
+  
+  std::vector<Int> getChannels(const String & quant_type)
+  {
+    if (quant_type == "TMT")
+    {
+      std::vector<Int> channles(ItraqConstants::CHANNELS_TMT_SIXPLEX[0], ItraqConstants::CHANNELS_TMT_SIXPLEX[0] + 6);
+      return channles;
+    }
+    else if(quant_type == "ITRAQ4PLEX")
+    {
+      std::vector<Int> channles(ItraqConstants::CHANNELS_FOURPLEX[0], ItraqConstants::CHANNELS_FOURPLEX[0] + 4);
+      return channles;
+    }
+    else // its 8plex
+    {
+      std::vector<Int> channles(ItraqConstants::CHANNELS_EIGHTPLEX[0], ItraqConstants::CHANNELS_EIGHTPLEX[0] + 8);
+      return channles;
+    }
+  }
 
   ExitCodes main_(int, const char **)
   {
-    std::vector<Int> tmtChannels(ItraqConstants::CHANNELS_TMT_SIXPLEX[0], ItraqConstants::CHANNELS_TMT_SIXPLEX[0] + 6);
+    String quant_type = getStringOption_("quant-type");
+    std::vector<Int> channels = getChannels(quant_type);
     
     ConsensusXMLFile file;
     ConsensusMap consensusMap;
@@ -52,6 +77,8 @@ protected:
     file.load(filename, consensusMap);
 
     String tsvFileName = getStringOption_("out");
+    
+    bool useProt = !getFlag_("no-prot");
     
     TextFile textFile;
 
@@ -63,9 +90,9 @@ protected:
     
     header.push_back("spot.nr");
     
-    for(Size i = 0; i < tmtChannels.size(); ++i)
+    for(Size i = 0; i < channels.size(); ++i)
     {
-      header.push_back(String("i") + String(tmtChannels[i]));
+      header.push_back(String("i") + String(channels[i]));
     }
     
     header.push_back("cf_id");
@@ -78,8 +105,13 @@ protected:
     //"sequence,prot.name,prot.accession,spot.nr,i114,i115,i116,i117,cf_id,
     //overlap,pre_mono_contribution,tic,MS2tic,charge,RT"
     
-    ProteinIdentification protIdent = consensusMap.getProteinIdentifications()[0];
     typedef std::vector< ProteinHit >::iterator ProtHitIt;
+    ProteinIdentification protIdent;
+    
+    if (useProt)
+    {
+      protIdent = consensusMap.getProteinIdentifications()[0];
+    }
     
     Int noId(0);
     Int notUnique(0);
@@ -94,7 +126,7 @@ protected:
       
       Int charge(0);
       
-      if (cFeature.getPeptideIdentifications().size() == 0)
+      if (cFeature.getPeptideIdentifications().size() == 0 || !useProt)
       {
         // we store unidentified hits anyway, because the iTRAQ quant is still helpful for normalization
         ++noId;
@@ -113,6 +145,7 @@ protected:
           ++notUnique;
           continue; // we only want unique peptides
         }
+
         ProtHitIt proteinHit = protIdent.findHit (cFeature.getPeptideIdentifications()[0].getHits()[0].getProteinAccessions()[0]);
         if (proteinHit == protIdent.getHits().end())
         {
@@ -151,9 +184,9 @@ protected:
       
       
       // export
-      for (Size i = 0; i < tmtChannels.size(); ++i)
+      for (Size i = 0; i < channels.size(); ++i)
       {
-        currentLine.push_back(String(intensityMap[tmtChannels[i]]));
+        currentLine.push_back(String(intensityMap[channels[i]]));
       }
 
       currentLine.push_back(String(cFeature.getUniqueId()));

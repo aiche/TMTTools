@@ -85,7 +85,7 @@
       <ITEM name="recycle_output" value="false" type="string" description="" />
       <ITEM name="toppas_type" value="input file list" type="string" description="" />
       <ITEMLIST name="file_names" type="string" description="">
-        <LISTITEM value="mzML/SR030712_0022_HeLa_1-1-1-1-1-1.mzML"/>
+        <LISTITEM value="../../../../../Volumes/agabi/proteomics/MARINA/PTX/raw_datasets/pilot/TMT/mzML/SR030712_0024_HeLa_50-5-25-1-25-5_TMT.mzML"/>
       </ITEMLIST>
       <ITEM name="x_pos" value="-1020" type="float" description="" />
       <ITEM name="y_pos" value="-280" type="float" description="" />
@@ -581,8 +581,8 @@
     <NODE name="15" description="">
       <ITEM name="recycle_output" value="false" type="string" description="" />
       <ITEM name="toppas_type" value="merger" type="string" description="" />
-      <ITEM name="x_pos" value="195.213333333331" type="float" description="" />
-      <ITEM name="y_pos" value="-300.079999999997" type="float" description="" />
+      <ITEM name="x_pos" value="195.213333129883" type="float" description="" />
+      <ITEM name="y_pos" value="-300.079986572266" type="float" description="" />
       <ITEM name="round_based" value="true" type="string" description="" />
     </NODE>
     <NODE name="16" description="">
@@ -748,7 +748,7 @@
       <ITEM name="recycle_output" value="false" type="string" description="" />
       <ITEM name="toppas_type" value="input file list" type="string" description="" />
       <ITEMLIST name="file_names" type="string" description="">
-        <LISTITEM value="../SwissProt_human_comp.fasta"/>
+        <LISTITEM value="../../openms/databases/SwissProt_human_comp.fasta"/>
       </ITEMLIST>
       <ITEM name="x_pos" value="-580" type="float" description="" />
       <ITEM name="y_pos" value="-840" type="float" description="" />
@@ -757,19 +757,19 @@
       <ITEM name="recycle_output" value="false" type="string" description="" />
       <ITEM name="toppas_type" value="input file list" type="string" description="" />
       <ITEMLIST name="file_names" type="string" description="">
-        <LISTITEM value="../../../../../../../../Users/aiche/MARINA/omssa-2.1.9.macos/omssacl"/>
+        <LISTITEM value="../../openms/omssa-2.1.9.macos/omssacl"/>
       </ITEMLIST>
-      <ITEM name="x_pos" value="-440" type="float" description="" />
-      <ITEM name="y_pos" value="-980" type="float" description="" />
+      <ITEM name="x_pos" value="120" type="float" description="" />
+      <ITEM name="y_pos" value="-820" type="float" description="" />
     </NODE>
     <NODE name="5" description="">
       <ITEM name="recycle_output" value="false" type="string" description="" />
       <ITEM name="toppas_type" value="input file list" type="string" description="" />
       <ITEMLIST name="file_names" type="string" description="">
-        <LISTITEM value="../../../../../../../../Users/aiche/MARINA/tandem-osx-intel-11-12-01-1/bin/tandem"/>
+        <LISTITEM value="../../openms/tandem-osx/bin/tandem"/>
       </ITEMLIST>
-      <ITEM name="x_pos" value="-260" type="float" description="" />
-      <ITEM name="y_pos" value="-980" type="float" description="" />
+      <ITEM name="x_pos" value="300" type="float" description="" />
+      <ITEM name="y_pos" value="-820" type="float" description="" />
     </NODE>
   </NODE>
   <NODE name="edges" description="">
