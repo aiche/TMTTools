@@ -786,8 +786,7 @@
               </ITEMLIST>
               <ITEMLIST name="tmt-6plex" type="string" description="override default values (see Documentation); use the following format: &lt;channel&gt;:&lt;-2Da&gt;/&lt;-1Da&gt;/&lt;+1Da&gt;/&lt;+2Da&gt; ; e.g. &apos;126:0/0.3/4/0&apos; , &apos;128:0.1/0.3/3/0.2&apos; " tags="advanced">
                 <LISTITEM value="126:0/0/6.1/0"/>
-                <LISTITEM value="127:0/0.5/06"/>
-                <LISTITEM value="7/0"/>
+                <LISTITEM value="127:0/0.5/6.7/0"/>
                 <LISTITEM value="128:0/1.1/4.2/0"/>
                 <LISTITEM value="129:0/1.7/4.1/0"/>
                 <LISTITEM value="130:0/2.8/2.5/0"/>
