@@ -5,6 +5,8 @@ cmake_minimum_required(VERSION 2.8)
 ## list all your executables here (a corresponding .C file should exist, e.g. Main.C)
 set(my_executables
 	TMTExporter
+  SpectraAnalyzer
+  IBSpectraExporter
 )
 
 ## find OpenMS configuration and register target "OpenMS" (our library)
@@ -24,10 +26,9 @@ if (OpenMS_FOUND)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OPENMS_ADDCXX_FLAGS}")
   add_definitions(${OPENMS_DEFINITIONS})
 
-
   ## add targets for the executables
   foreach(i ${my_executables})
-    add_executable(${i} ${i}.C)
+    add_executable(${i} ${i}.cxx)
     ## link executables against OpenMS
   	target_link_libraries(${i} OpenMS)
   endforeach(i)

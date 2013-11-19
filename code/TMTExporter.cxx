@@ -84,7 +84,7 @@ protected:
 
     // construct tsv file header
     StringList header;
-    header.push_back("sequence");
+    header.push_back("#sequence");
     header.push_back("prot.name");
     header.push_back("prot.accession");
     
