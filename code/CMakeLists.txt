@@ -7,6 +7,7 @@ set(my_executables
 	TMTExporter
   SpectraAnalyzer
   IBSpectraExporter
+  PurityExporter
 )
 
 ## find OpenMS configuration and register target "OpenMS" (our library)

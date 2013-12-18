@@ -28,13 +28,13 @@ protected:
   void registerOptionsAndFlags_()
   {
     registerInputFile_("in", "<input-file>", "", "The input file.",true);
-    setValidFormats_("in", StringList::create("ConsensusXML"));
+    setValidFormats_("in",  ListUtils::create<String>("ConsensusXML"));
 
     registerOutputFile_("out", "<output-file>", "", "The output file.",true);
-    setValidFormats_("out", StringList::create("tsv"));
+    setValidFormats_("out",  ListUtils::create<String>("tsv"));
     
     registerStringOption_("quant-type", "<ms2-type>", "TMT", "Type of MS2 quantification technique.",false);
-    setValidStrings_("quant-type", StringList::create("TMT,ITRAQ4PLEX,ITRAQ8PLEX"));
+    setValidStrings_("quant-type",  ListUtils::create<String>("TMT,ITRAQ4PLEX,ITRAQ8PLEX"));
     
     registerFlag_("no-prot", "Do not check for protein identifications.");
     
@@ -100,7 +100,7 @@ protected:
     header.push_back("charge");
     header.push_back("RT");
     
-    textFile.push_back(header.concatenate("\t"));
+    textFile.push_back(ListUtils::concatenate(header, "\t"));
     
     //"sequence,prot.name,prot.accession,spot.nr,i114,i115,i116,i117,cf_id,
     //overlap,pre_mono_contribution,tic,MS2tic,charge,RT"
@@ -194,7 +194,7 @@ protected:
       currentLine.push_back((String(cFeature.getIntensity())));
       currentLine.push_back(String(charge));
       currentLine.push_back(String(cFeature.getRT()));
-      textFile.push_back(currentLine.concatenate("\t"));
+      textFile.push_back(ListUtils::concatenate(currentLine, "\t"));
       ++remaining;
     }
     

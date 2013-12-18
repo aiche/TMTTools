@@ -25,7 +25,7 @@ protected:
   void registerOptionsAndFlags_()
   {
     registerInputFile_("in", "<input-file>", "", "The input file.",true);
-    setValidFormats_("in", StringList::create("mzML"));
+    setValidFormats_("in", ListUtils::create<String>("mzML"));
         
     addEmptyLine_();
   }
@@ -44,7 +44,7 @@ protected:
     MSExperiment<> exp;
     
     // we only want to load the MS2 spectra
-    IntList msLevels = IntList::create("2");
+    IntList msLevels = ListUtils::create<Int>("2");
     mzMLFile.getOptions().setMSLevels(msLevels);
     
     mzMLFile.load(filename, exp);
