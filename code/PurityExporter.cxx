@@ -122,14 +122,7 @@ protected:
       currentLine.push_back(getValueOrDefault(cFeature, "precursor_charge", 0));
       currentLine.push_back(getValueOrDefault(cFeature, "precursor_purity", -1.0));
       
-      std::map<Int, DoubleReal> intensityMap;
-
-
-      // skip features with 0 intensity
-      if(cf->getIntensity() == 0)
-      {
-        continue;
-      }
+      std::map<Int, double> intensityMap;
 
       ConsensusFeature::HandleSetType features = cFeature.getFeatures();
       for(ConsensusFeature::HandleSetType::const_iterator fIt = features.begin();

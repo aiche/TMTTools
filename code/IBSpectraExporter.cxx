@@ -31,7 +31,7 @@ private:
   ///
   bool use_prot_;
   /// lower intensity bound
-  DoubleReal intensity_tolerance_;
+  double intensity_tolerance_;
 
   /**
     @brief Holds all id information contained in a id csv line
@@ -42,10 +42,10 @@ private:
     String peptide; // ￼ Peptide sequence
     String modif; //￼ Peptide modification string
     Int charge; // ￼ Charge state
-    DoubleReal theo_mass; // Theoretical peptide mass
-    DoubleReal exp_mass; //￼ Experimentally observed mass
-    DoubleReal parent_intens; //￼ Parent intensity
-    DoubleReal retention_time; // Retention time
+    double theo_mass; // Theoretical peptide mass
+    double exp_mass; //￼ Experimentally observed mass
+    double parent_intens; //￼ Parent intensity
+    double retention_time; // Retention time
     String spectrum; // ￼ Spectrum identifier
     String search_engine; // ￼ Protein search engine and score
 
@@ -310,7 +310,7 @@ protected:
         entry->toStringList(currentLine);
 
         // extract channel intensities and positions
-        std::map<Int, DoubleReal> intensityMap;
+        std::map<Int, double> intensityMap;
         ConsensusFeature::HandleSetType features = cFeature.getFeatures();
 
         for(ConsensusFeature::HandleSetType::const_iterator fIt = features.begin();

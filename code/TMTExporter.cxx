@@ -162,7 +162,7 @@ protected:
       // spot number (always constant here)
       currentLine.push_back("1");
       
-      std::map<Int, DoubleReal> intensityMap;
+      std::map<Int, double> intensityMap;
       
       
       // skip features with 0 intensity

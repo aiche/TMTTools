@@ -18,7 +18,15 @@ if (OpenMS_FOUND)
 
   ## include directories for OpenMS headers (and contrib)
   include_directories(${OPENMS_INCLUDE_DIRS})
-
+	
+	# hack until we fixed package exports
+	set(BASE_SOURCE "C:/dev/AUTO_PACKAGE/head/OpenMS")
+	set(BUILD_BASE "C:/dev/AUTO_PACKAGE/head/OpenMS_build32")
+	set(CONTRIB "C:/dev/contrib_vs10_32bit/include")
+	set(QT "C:/dev/qt-4.8.4_vs10_32bit/include")
+	set(INCLUDE_DIRS "${BUILD_BASE}/src/openms/include;${BUILD_BASE}/src/openswathalgo/include;${BASE_SOURCE}/src/openms/include;${BASE_SOURCE}/src/openswathalgo/include/;${CONTRIB};${QT};${QT}/QtCore")
+	include_directories(${INCLUDE_DIRS})
+	
   ## append precompiler macros and compiler flags specific to OpenMS
   ## Warning: this could be harmful to your project. Check this if problems occur.
   ## Also, use this to add your own compiler flags, e.g. for OpenMP support.
